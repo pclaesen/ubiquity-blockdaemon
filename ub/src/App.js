@@ -27,22 +27,23 @@ const App = () => {
   async function fetchData() {
 
     const parameters = {
-      "protocol" : {
-        "ethereum",
-          
-        "algorand"
-      },
-      "network:" mainnet"
+      "protocols" : [{
+        handle: "ethereum",
+        network: "mainnet"
+      }]
     }
     
     let response = await axios({
+      
       method: "get",
-      url: `https://svc.blockdaemon.com/universal/v1/${parameters}?apiKey=WwDng-70BqNijzwDLk3p-bOnlfyN3FXmTBbifjea3wBAE8jy`,
-      // headers: {
-      //   "Access-Control-Allow-Origin" : "*",
-      //   "Content-type": "Application/json",
-      //   "Authorization": `Bearer ${token}`
-      //   },
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-type": "Application/json",
+        
+        },
+      // url: `https://svc.blockdaemon.com/universal/v1?apiKey=WwDng-70BqNijzwDLk3p-bOnlfyN3FXmTBbifjea3wBAE8jy`,
+      url: `https://svc.blockdaemon.com/universal/v1/${parameters}/tx/estimate_fee`,
+      
            
       })
       console.log(response.data.estimated_fees)
