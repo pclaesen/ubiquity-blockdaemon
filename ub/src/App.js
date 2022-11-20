@@ -1,24 +1,25 @@
 import './App.css';
-
 import axios from 'axios';
-
+import { useState } from 'react';
 
 const App = () => {
+
+  const [ethereumGasPrices, setEthereumGasPrices] = useState();
+  const [bitcoinGasPrices, setBitcoinGasPrices] = useState();
   
-  var token = "INSERT_API_KEY";
-  let ethereumGasPrices = [];
-  let bitcoinGasPrices = [];
+  let token = process.env.REACT_APP_BD_API;
+  let ethereumGasPricesArray = [];
+  let bitcoinGasPricesArray = [];
 
   async function fetchData() {  
     
     //define the value pairs you want to lookup, see here: https://blockdaemon.com/documentation/ubiquity-api/specialized-apis/gas-fee-estimation-api/#:~:text=ethereum/mainnet-,Supported%20Protocols%20and%20Networks,-Here%20is%20a 
-    let parameters = [  
-        {id: 1, value: "ethereum/mainnet", label: "Ethereum" },
-        {id: 2, value: "bitcoin/mainnet", label: "Bitcoin" },
-    ]; 
+    let parameters = ["ethereum/mainnet","bitcoin/mainnet"];
+
+    console.log("Fetching gas prices, please wait...")
     
-    for (var i = 0; i < parameters.length; i++) { //loop the parameters array and fetch the necessary data
-      console.log("Fetching ",parameters[i].label," gas prices, please wait...")
+    //loop the parameters array and fetch the necessary data
+    for (var i = 0; i < parameters.length; i++) {      
 
       let response = await axios({        
         method: "get",
@@ -26,33 +27,49 @@ const App = () => {
           "Authorization": `Bearer ${token}`,
           "Content-type": "Application/json",          
           },          
-        url: `https://svc.blockdaemon.com/universal/v1/${parameters[i].value}/tx/estimate_fee?apiKey=INSERT_API_KEY`,
-      })
+        url: `https://svc.blockdaemon.com/universal/v1/${parameters[i]}/tx/estimate_fee/`,
+      });
       
-      if(parameters[i].label === "Ethereum") { //push the correct data to the different arrays
-        ethereumGasPrices.push(response.data.estimated_fees);
-        console.log("Fetched Ethereum gas prices");
+      //push the correct data to the different arrays:
+      if(parameters[i] === "ethereum/mainnet") {
+        ethereumGasPricesArray.push(response.data.estimated_fees);
+        console.log("Fetched Ethereum gas prices");       
       } else {
-        bitcoinGasPrices.push(response.data.estimated_fees);
-        console.log("Fetched Bitcoin gas prices");
-      }
-    }
+        bitcoinGasPricesArray.push(response.data.estimated_fees);
+        console.log("Fetched Bitcoin gas prices");        
+      }      
+    }   
   }
 
-  function showGasPrices() {
-    console.log("Ethereum: ",ethereumGasPrices[0].fast,ethereumGasPrices[0].medium,ethereumGasPrices[0].slow);
-    console.log("Bitcoin: ",bitcoinGasPrices[0].fast,bitcoinGasPrices[0].medium, bitcoinGasPrices[0].slow);
+  function SetGasPrices() {
+    console.log("Ethereum: ",ethereumGasPricesArray[0].fast,ethereumGasPricesArray[0].medium,ethereumGasPricesArray[0].slow);
+    console.log("Bitcoin: ",bitcoinGasPricesArray[0].fast,bitcoinGasPricesArray[0].medium, bitcoinGasPricesArray[0].slow);
+    setEthereumGasPrices(ethereumGasPricesArray);
+    setBitcoinGasPrices(bitcoinGasPricesArray);        
   }
 
+  const RenderPrices =() => {    
+    if (ethereumGasPrices) {          
+      return(
+        <div className='prices'>
+          Ethereum max total fee:<br />
+          {ethereumGasPrices[0].fast.max_total_fee}<br />
+          <br />
+          Bitcoin max fee:<br />
+          {bitcoinGasPrices[0].fast}
+        </div>
+      )
+    }    
+  }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <button onClick={fetchData}>Fetch data</button>
-        <button onClick={showGasPrices}>Console log gas prices</button>
-      </header>
-    </div>
+    <>
+      <div className="main">        
+          <button onClick={fetchData}>Fetch data</button>
+          <button onClick={SetGasPrices}>Show gas prices (fetch data first)</button>
+          <RenderPrices />
+      </div>
+    </>
   );
 }
-
 export default App;
