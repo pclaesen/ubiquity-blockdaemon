@@ -21,11 +21,11 @@ The app will now load in your browser.
 
 ## Using the app
 
-The app usage is very simple.
-First, get the data by using the `Fetch data` button.
-Make sure to open the console to see the different events that are logged.
-Once that's done, press the `Show gas prices` button to see the gas fees for the 4 different blockchains.
-
+The app usage is very simple.<br />
+First, get the data by using the `Fetch data` button.<br />
+Make sure to open the console to see the different events that are logged.<br />
+Once that's done, press the `Show gas prices` button to see the gas fees for the 4 different blockchains.<br />
+<br />
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
