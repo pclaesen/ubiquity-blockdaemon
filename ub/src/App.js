@@ -127,9 +127,9 @@ const App = () => {
           <br />
           Bitcoin Cash testnet: {[bitcoinCashGasPricesTestnet[0].slow," / ", bitcoinCashGasPricesTestnet[0].medium," / ", bitcoinCashGasPricesTestnet[0].fast]} sats<br />
           <br />
-          Ethereum mainnet (max total): {[ethereumGasPricesMainnet[0].slow.max_total_fee," / ", ethereumGasPricesMainnet[0].medium.max_total_fee," / ", ethereumGasPricesMainnet[0].fast.max_total_fee]} gwei<br />          
+          Ethereum mainnet (max total): {[ethereumGasPricesMainnet[0].slow.max_total_fee," / ", ethereumGasPricesMainnet[0].medium.max_total_fee," / ", ethereumGasPricesMainnet[0].fast.max_total_fee]} wei<br />          
           <br />
-          Ethereum Goerli (max total): {[ethereumGasPricesGoerli[0].slow.max_total_fee," / ", ethereumGasPricesGoerli[0].medium.max_total_fee," / ", ethereumGasPricesGoerli[0].fast.max_total_fee]} gwei<br />          
+          Ethereum Goerli (max total): {[ethereumGasPricesGoerli[0].slow.max_total_fee," / ", ethereumGasPricesGoerli[0].medium.max_total_fee," / ", ethereumGasPricesGoerli[0].fast.max_total_fee]} wei<br />          
           <br />
           Litecoin mainnet: {[litecoinGasPricesMainnet[0].slow," / ", litecoinGasPricesMainnet[0].medium," / ", litecoinGasPricesMainnet[0].fast]} LTC<br />
           <br />
