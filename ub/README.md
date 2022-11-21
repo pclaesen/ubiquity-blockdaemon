@@ -12,11 +12,11 @@ We will fetch both the mainnet and testnet gas prices of each chain.
 You can reference the gas fee API documentation [here](https://blockdaemon.com/documentation/ubiquity-api/specialized-apis/gas-fee-estimation-api/).
 ## Get up and running
 
-To use this app, `git clone` the repo.
-Run `npm install`, add a `.env` file in the root folder and obtain a [Blockdaemon API key](https://app.blockdaemon.com/signin/register).
-Open the .env file and add the API key like so:
-`REACT_APP_API_KEY=yourapikeyhere` (without " or ')
-Save the .env file and run `npm start`, allow to open port 3000 if needed.
+To use this app, `git clone` the repo.<br />
+Run `npm install`, add a `.env` file in the root folder and obtain a [Blockdaemon API key](https://app.blockdaemon.com/signin/register).<br />
+Open the .env file and add the API key like so:<br />
+`REACT_APP_API_KEY=yourapikeyhere` (without " or ')<br />
+Save the .env file and run `npm start`, allow to open port 3000 if needed.<br />
 The app will now load in your browser.
 
 ## Using the app
