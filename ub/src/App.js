@@ -2,9 +2,11 @@ import './App.css';
 import axios from 'axios';
 import { useState } from 'react';
 
-let token = process.env.REACT_APP_BD_API;
+let token = process.env.REACT_APP_API_KEY;
 
 const App = () => {
+
+  console.log(token)
 
   const [bitcoinGasPricesMainnet, setBitcoinGasPricesMainnet] = useState();
   const [bitcoinGasPricesTestnet, setBitcoinGasPricesTestnet] = useState(); 
