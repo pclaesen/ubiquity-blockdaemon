@@ -54,7 +54,7 @@ const App = () => {
           },          
         url: `https://svc.blockdaemon.com/universal/v1/${parameters[i]}/tx/estimate_fee/`,
       });
-      
+  
       //push the data to the correct array:
       if(parameters[i] === "bitcoin/mainnet") {
           bitcoinMainnetGasPricesArray.push(response.data.estimated_fees);
@@ -73,11 +73,20 @@ const App = () => {
           console.log("Fetched Bitcoin Cash testnet gas prices");
           console.log(bitcoinCashTestnetGasPricesArray);
       } else if(parameters[i] === "ethereum/mainnet") {
-          ethereumMainnetGasPricesArray.push(response.data.estimated_fees);
+          //we replace the Ethereum values from the fetched array to rounded values in gwei, for readability.
+          let ethereumMainnetGweiSlow = Math.round((response.data.estimated_fees.slow.max_total_fee.toString()) / 10**9);
+          let ethereumMainnetGweiMedium = Math.round((response.data.estimated_fees.medium.max_total_fee.toString()) / 10**9);
+          let ethereumMainnetGweiFast = Math.round((response.data.estimated_fees.fast.max_total_fee.toString()) / 10**9);
+          ethereumMainnetGasPricesArray.push({ethereumMainnetGweiSlow, ethereumMainnetGweiMedium, ethereumMainnetGweiFast});
           console.log("Fetched Ethereum mainnet gas prices");
           console.log(ethereumMainnetGasPricesArray);
       } else if(parameters[i] === "ethereum/goerli") {
-          ethereumGoerliGasPricesArray.push(response.data.estimated_fees);
+          //we replace the Ethereum values from the fetched array to rounded values in gwei, for readability.
+          let ethereumGoerliGweiSlow = Math.round((response.data.estimated_fees.slow.max_total_fee.toString()) / 10**9);
+          let ethereumGoerliGweiMedium = Math.round((response.data.estimated_fees.medium.max_total_fee.toString()) / 10**9);
+          let ethereumGoerliGweiFast = Math.round((response.data.estimated_fees.fast.max_total_fee.toString()) / 10**9);
+          ethereumGoerliGasPricesArray.push({ethereumGoerliGweiSlow, ethereumGoerliGweiMedium, ethereumGoerliGweiFast});
+          console.log("TEST: ",response.data.estimated_fees);
           console.log("Fetched Ethereum Goerli gas prices");
           console.log(ethereumGoerliGasPricesArray);
       } else if(parameters[i] === "litecoin/mainnet") {
@@ -97,8 +106,8 @@ const App = () => {
     console.log("Bitcoin testnet: ",bitcoinTestnetGasPricesArray[0].slow, bitcoinTestnetGasPricesArray[0].medium, bitcoinTestnetGasPricesArray[0].fast);
     console.log("Bitcoin Cash mainnet: ",bitcoinCashMainnetGasPricesArray[0].slow, bitcoinCashMainnetGasPricesArray[0].medium, bitcoinCashMainnetGasPricesArray[0].fast);
     console.log("Bitcoin Cash testnet: ",bitcoinCashTestnetGasPricesArray[0].slow, bitcoinCashTestnetGasPricesArray[0].medium, bitcoinCashTestnetGasPricesArray[0].fast);
-    console.log("Ethereum mainnet: ",ethereumMainnetGasPricesArray[0].slow, ethereumMainnetGasPricesArray[0].medium, ethereumMainnetGasPricesArray[0].fast);
-    console.log("Ethereum Goerli: ",ethereumGoerliGasPricesArray[0].slow, ethereumGoerliGasPricesArray[0].medium, ethereumGoerliGasPricesArray[0].fast);
+    console.log("Ethereum mainnet: ",ethereumMainnetGasPricesArray[0].ethereumMainnetGweiSlow, ethereumMainnetGasPricesArray[0].ethereumMainnetGweiMedium, ethereumMainnetGasPricesArray[0].ethereumMainnetGweiFast);
+    console.log("Ethereum Goerli: ",ethereumGoerliGasPricesArray[0].ethereumGoerliGweiSlow, ethereumGoerliGasPricesArray[0].ethereumGoerliGweiMedium, ethereumGoerliGasPricesArray[0].ethereumGoerliGweiFast);
     console.log("Litecoin mainnet: ",litecoinMainnetGasPricesArray[0].slow,litecoinMainnetGasPricesArray[0].medium, litecoinMainnetGasPricesArray[0].fast);
     console.log("Litecoin testnet: ",litecoinTestnetGasPricesArray[0].slow,litecoinTestnetGasPricesArray[0].medium, litecoinTestnetGasPricesArray[0].fast);
 
@@ -129,9 +138,9 @@ const App = () => {
           <br />
           Bitcoin Cash testnet: {[bitcoinCashGasPricesTestnet[0].slow," / ", bitcoinCashGasPricesTestnet[0].medium," / ", bitcoinCashGasPricesTestnet[0].fast]} sats<br />
           <br />
-          Ethereum mainnet (max total): {[ethereumGasPricesMainnet[0].slow.max_total_fee," / ", ethereumGasPricesMainnet[0].medium.max_total_fee," / ", ethereumGasPricesMainnet[0].fast.max_total_fee]} wei<br />          
+          Ethereum mainnet (max total): {[ethereumGasPricesMainnet[0].ethereumMainnetGweiSlow," / ", ethereumGasPricesMainnet[0].ethereumMainnetGweiMedium," / ", ethereumGasPricesMainnet[0].ethereumMainnetGweiFast]} gwei<br />          
           <br />
-          Ethereum Goerli (max total): {[ethereumGasPricesGoerli[0].slow.max_total_fee," / ", ethereumGasPricesGoerli[0].medium.max_total_fee," / ", ethereumGasPricesGoerli[0].fast.max_total_fee]} wei<br />          
+          Ethereum Goerli (max total): {[ethereumGasPricesGoerli[0].ethereumGoerliGweiSlow," / ", ethereumGasPricesGoerli[0].ethereumGoerliGweiMedium," / ", ethereumGasPricesGoerli[0].ethereumGoerliGweiFast]} gwei<br />          
           <br />
           Litecoin mainnet: {[litecoinGasPricesMainnet[0].slow," / ", litecoinGasPricesMainnet[0].medium," / ", litecoinGasPricesMainnet[0].fast]} LTC<br />
           <br />
