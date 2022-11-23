@@ -142,9 +142,9 @@ const App = () => {
           <br />
           Ethereum Goerli (max total): {[ethereumGasPricesGoerli[0].ethereumGoerliGweiSlow," / ", ethereumGasPricesGoerli[0].ethereumGoerliGweiMedium," / ", ethereumGasPricesGoerli[0].ethereumGoerliGweiFast]} gwei<br />          
           <br />
-          Litecoin mainnet: {[litecoinGasPricesMainnet[0].slow," / ", litecoinGasPricesMainnet[0].medium," / ", litecoinGasPricesMainnet[0].fast]} LTC<br />
+          Litecoin mainnet: {[litecoinGasPricesMainnet[0].slow," / ", litecoinGasPricesMainnet[0].medium," / ", litecoinGasPricesMainnet[0].fast]}<br />
           <br />
-          Litecoin testnet: {[litecoinGasPricesTestnet[0].slow," / ", litecoinGasPricesTestnet[0].medium," / ", litecoinGasPricesTestnet[0].fast]} LTC<br />
+          Litecoin testnet: {[litecoinGasPricesTestnet[0].slow," / ", litecoinGasPricesTestnet[0].medium," / ", litecoinGasPricesTestnet[0].fast]}<br />
           <br />          
         </div>
         </>
