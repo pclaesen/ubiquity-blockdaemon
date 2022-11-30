@@ -86,7 +86,6 @@ const App = () => {
           let ethereumGoerliGweiMedium = Math.round((response.data.estimated_fees.medium.max_total_fee.toString()) / 10**9);
           let ethereumGoerliGweiFast = Math.round((response.data.estimated_fees.fast.max_total_fee.toString()) / 10**9);
           ethereumGoerliGasPricesArray.push({ethereumGoerliGweiSlow, ethereumGoerliGweiMedium, ethereumGoerliGweiFast});
-          console.log("TEST: ",response.data.estimated_fees);
           console.log("Fetched Ethereum Goerli gas prices");
           console.log(ethereumGoerliGasPricesArray);
       } else if(parameters[i] === "litecoin/mainnet") {
