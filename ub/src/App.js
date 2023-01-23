@@ -6,7 +6,7 @@ let token = process.env.REACT_APP_API_KEY;
 
 const App = () => {
 
-  console.log(token)
+  //console.log(token) 
 
   const [bitcoinGasPricesMainnet, setBitcoinGasPricesMainnet] = useState();
   const [bitcoinGasPricesTestnet, setBitcoinGasPricesTestnet] = useState(); 
@@ -56,23 +56,29 @@ const App = () => {
       });
   
       //push the data to the correct array:
-      if(parameters[i] === "bitcoin/mainnet") {
+      
+      switch (parameters[i])  {
+        case "bitcoin/mainnet":
           bitcoinMainnetGasPricesArray.push(response.data.estimated_fees);
           console.log("Fetched Bitcoin mainnet gas prices");
-          console.log(bitcoinMainnetGasPricesArray);        
-      } else if(parameters[i] === "bitcoin/testnet") {
+          console.log(bitcoinMainnetGasPricesArray);
+          break;
+        case "bitcoin/testnet":
           bitcoinTestnetGasPricesArray.push(response.data.estimated_fees);
           console.log("Fetched Bitcoin testnet gas prices");
-          console.log(bitcoinTestnetGasPricesArray); 
-      } else if(parameters[i] ==="bitcoincash/mainnet") {
+          console.log(bitcoinTestnetGasPricesArray);
+          break;
+        case "bitcoincash/mainnet":
           bitcoinCashMainnetGasPricesArray.push(response.data.estimated_fees);
           console.log("Fetched Bitcoin Cash mainnet gas prices");
-          console.log(bitcoinCashMainnetGasPricesArray);        
-      } else if(parameters[i] === "bitcoincash/testnet") {
+          console.log(bitcoinCashMainnetGasPricesArray);
+          break;
+        case "bitcoincash/testnet":
           bitcoinCashTestnetGasPricesArray.push(response.data.estimated_fees);
           console.log("Fetched Bitcoin Cash testnet gas prices");
           console.log(bitcoinCashTestnetGasPricesArray);
-      } else if(parameters[i] === "ethereum/mainnet") {
+          break;
+        case "ethereum/mainnet":
           //we replace the Ethereum values from the fetched array to rounded values in gwei, for readability.
           let ethereumMainnetGweiSlow = Math.round((response.data.estimated_fees.slow.max_total_fee.toString()) / 10**9);
           let ethereumMainnetGweiMedium = Math.round((response.data.estimated_fees.medium.max_total_fee.toString()) / 10**9);
@@ -80,7 +86,8 @@ const App = () => {
           ethereumMainnetGasPricesArray.push({ethereumMainnetGweiSlow, ethereumMainnetGweiMedium, ethereumMainnetGweiFast});
           console.log("Fetched Ethereum mainnet gas prices");
           console.log(ethereumMainnetGasPricesArray);
-      } else if(parameters[i] === "ethereum/goerli") {
+          break;
+        case "ethereum/goerli":
           //we replace the Ethereum values from the fetched array to rounded values in gwei, for readability.
           let ethereumGoerliGweiSlow = Math.round((response.data.estimated_fees.slow.max_total_fee.toString()) / 10**9);
           let ethereumGoerliGweiMedium = Math.round((response.data.estimated_fees.medium.max_total_fee.toString()) / 10**9);
@@ -88,15 +95,18 @@ const App = () => {
           ethereumGoerliGasPricesArray.push({ethereumGoerliGweiSlow, ethereumGoerliGweiMedium, ethereumGoerliGweiFast});
           console.log("Fetched Ethereum Goerli gas prices");
           console.log(ethereumGoerliGasPricesArray);
-      } else if(parameters[i] === "litecoin/mainnet") {
+          break;
+        case "litecoin/mainnet":
           litecoinMainnetGasPricesArray.push(response.data.estimated_fees);
           console.log("Fetched Litecoin mainnet gas prices");
           console.log(litecoinMainnetGasPricesArray);
-      } else if(parameters[i] === "litecoin/testnet") {
+          break;
+        case "litecoin/testnet":
           litecoinTestnetGasPricesArray.push(response.data.estimated_fees);
           console.log("Fetched Litecoin testnet gas prices");
           console.log(litecoinTestnetGasPricesArray);
-      }        
+          break;
+      }      
     }   
   }
 
