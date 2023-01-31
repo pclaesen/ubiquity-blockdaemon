@@ -138,23 +138,29 @@ const App = () => {
           Fees per chain (slow / medium / fast):<br/>
         </div>
         <div className="fees-detail">
-          <br />
-          Bitcoin mainnet: {[bitcoinGasPricesMainnet[0].slow," / ", bitcoinGasPricesMainnet[0].medium," / ", bitcoinGasPricesMainnet[0].fast]} sats<br />
-          <br />
-          Bitcoin testnet: {[bitcoinGasPricesTestnet[0].slow," / ", bitcoinGasPricesTestnet[0].medium," / ", bitcoinGasPricesTestnet[0].fast]} sats<br />
-          <br />
-          Bitcoin Cash mainnet: {[bitcoinCashGasPricesMainnet[0].slow," / ", bitcoinCashGasPricesMainnet[0].medium," / ", bitcoinCashGasPricesMainnet[0].fast]} sats<br />
-          <br />
-          Bitcoin Cash testnet: {[bitcoinCashGasPricesTestnet[0].slow," / ", bitcoinCashGasPricesTestnet[0].medium," / ", bitcoinCashGasPricesTestnet[0].fast]} sats<br />
-          <br />
-          Ethereum mainnet (max total): {[ethereumGasPricesMainnet[0].ethereumMainnetGweiSlow," / ", ethereumGasPricesMainnet[0].ethereumMainnetGweiMedium," / ", ethereumGasPricesMainnet[0].ethereumMainnetGweiFast]} gwei<br />          
-          <br />
-          Ethereum Goerli (max total): {[ethereumGasPricesGoerli[0].ethereumGoerliGweiSlow," / ", ethereumGasPricesGoerli[0].ethereumGoerliGweiMedium," / ", ethereumGasPricesGoerli[0].ethereumGoerliGweiFast]} gwei<br />          
-          <br />
-          Litecoin mainnet: {[litecoinGasPricesMainnet[0].slow," / ", litecoinGasPricesMainnet[0].medium," / ", litecoinGasPricesMainnet[0].fast]} litoshi per byte<br />
-          <br />
-          Litecoin testnet: {[litecoinGasPricesTestnet[0].slow," / ", litecoinGasPricesTestnet[0].medium," / ", litecoinGasPricesTestnet[0].fast]} litoshi per byte<br />
-          <br />          
+          <div className="solo-detail">Bitcoin mainnet: {[bitcoinGasPricesMainnet[0].slow," / ", bitcoinGasPricesMainnet[0].medium," / ", bitcoinGasPricesMainnet[0].fast]} sats
+          </div>
+          <div className="solo-detail">
+          Bitcoin testnet: {[bitcoinGasPricesTestnet[0].slow," / ", bitcoinGasPricesTestnet[0].medium," / ", bitcoinGasPricesTestnet[0].fast]} sats
+          </div>
+          <div className="solo-detail">
+          Bitcoin Cash mainnet: {[bitcoinCashGasPricesMainnet[0].slow," / ", bitcoinCashGasPricesMainnet[0].medium," / ", bitcoinCashGasPricesMainnet[0].fast]} sats
+          </div>
+          <div className="solo-detail">
+          Bitcoin Cash testnet: {[bitcoinCashGasPricesTestnet[0].slow," / ", bitcoinCashGasPricesTestnet[0].medium," / ", bitcoinCashGasPricesTestnet[0].fast]} sats
+          </div>
+          <div className="solo-detail">
+          Ethereum mainnet (max total): {[ethereumGasPricesMainnet[0].ethereumMainnetGweiSlow," / ", ethereumGasPricesMainnet[0].ethereumMainnetGweiMedium," / ", ethereumGasPricesMainnet[0].ethereumMainnetGweiFast]} gwei         
+          </div>
+          <div className="solo-detail">
+          Ethereum Goerli (max total): {[ethereumGasPricesGoerli[0].ethereumGoerliGweiSlow," / ", ethereumGasPricesGoerli[0].ethereumGoerliGweiMedium," / ", ethereumGasPricesGoerli[0].ethereumGoerliGweiFast]} gwei          
+          </div>
+          <div className="solo-detail">
+          Litecoin mainnet: {[litecoinGasPricesMainnet[0].slow," / ", litecoinGasPricesMainnet[0].medium," / ", litecoinGasPricesMainnet[0].fast]} litoshi per byte
+          </div>
+          <div className="solo-detail">
+          Litecoin testnet: {[litecoinGasPricesTestnet[0].slow," / ", litecoinGasPricesTestnet[0].medium," / ", litecoinGasPricesTestnet[0].fast]} litoshi per byte
+          </div>
         </div>
         </>
       )
@@ -164,10 +170,9 @@ const App = () => {
   return (
     <>
       <div className="main">        
-        <button onClick={fetchData}>Fetch data</button>
-        <button onClick={SetGasPrices}>Show gas prices (fetch data first)</button>
-        <br />
-        <br />
+        <button className="button" onClick={fetchData}>Fetch data</button>
+        <button className="button" onClick={SetGasPrices}>Show gas prices (fetch data first)</button>
+      
         <RenderPrices />
       </div>
     </>
