@@ -17,14 +17,14 @@ const App = () => {
   const [litecoinGasPricesMainnet, setLitecoinGasPricesMainnet] = useState();
   const [litecoinGasPricesTestnet, setLitecoinGasPricesTestnet] = useState();  
   
-  let bitcoinMainnetGasPricesArray = [];
-  let bitcoinTestnetGasPricesArray = [];
-  let bitcoinCashMainnetGasPricesArray = [];
-  let bitcoinCashTestnetGasPricesArray = [];
-  let ethereumMainnetGasPricesArray = [];
-  let ethereumGoerliGasPricesArray = [];
-  let litecoinMainnetGasPricesArray = [];
-  let litecoinTestnetGasPricesArray = [];
+  const bitcoinMainnetGasPricesArray = [];
+  const bitcoinTestnetGasPricesArray = [];
+  const bitcoinCashMainnetGasPricesArray = [];
+  const bitcoinCashTestnetGasPricesArray = [];
+  const ethereumMainnetGasPricesArray = [];
+  const ethereumGoerliGasPricesArray = [];
+  const litecoinMainnetGasPricesArray = [];
+  const litecoinTestnetGasPricesArray = [];
   
 
   async function fetchData() {  
