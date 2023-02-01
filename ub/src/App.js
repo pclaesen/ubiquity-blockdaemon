@@ -111,27 +111,32 @@ const App = () => {
   }
 
   function SetGasPrices() {
-    console.log("Bitcoin mainnet: ",bitcoinMainnetGasPricesArray[0].slow, bitcoinMainnetGasPricesArray[0].medium, bitcoinMainnetGasPricesArray[0].fast);
-    console.log("Bitcoin testnet: ",bitcoinTestnetGasPricesArray[0].slow, bitcoinTestnetGasPricesArray[0].medium, bitcoinTestnetGasPricesArray[0].fast);
-    console.log("Bitcoin Cash mainnet: ",bitcoinCashMainnetGasPricesArray[0].slow, bitcoinCashMainnetGasPricesArray[0].medium, bitcoinCashMainnetGasPricesArray[0].fast);
-    console.log("Bitcoin Cash testnet: ",bitcoinCashTestnetGasPricesArray[0].slow, bitcoinCashTestnetGasPricesArray[0].medium, bitcoinCashTestnetGasPricesArray[0].fast);
-    console.log("Ethereum mainnet: ",ethereumMainnetGasPricesArray[0].ethereumMainnetGweiSlow, ethereumMainnetGasPricesArray[0].ethereumMainnetGweiMedium, ethereumMainnetGasPricesArray[0].ethereumMainnetGweiFast);
-    console.log("Ethereum Goerli: ",ethereumGoerliGasPricesArray[0].ethereumGoerliGweiSlow, ethereumGoerliGasPricesArray[0].ethereumGoerliGweiMedium, ethereumGoerliGasPricesArray[0].ethereumGoerliGweiFast);
-    console.log("Litecoin mainnet: ",litecoinMainnetGasPricesArray[0].slow,litecoinMainnetGasPricesArray[0].medium, litecoinMainnetGasPricesArray[0].fast);
-    console.log("Litecoin testnet: ",litecoinTestnetGasPricesArray[0].slow,litecoinTestnetGasPricesArray[0].medium, litecoinTestnetGasPricesArray[0].fast);
+    if(bitcoinMainnetGasPricesArray.length > 0) {
+      console.log("Bitcoin mainnet: ",bitcoinMainnetGasPricesArray[0].slow, bitcoinMainnetGasPricesArray[0].medium, bitcoinMainnetGasPricesArray[0].fast);
+      console.log("Bitcoin testnet: ",bitcoinTestnetGasPricesArray[0].slow, bitcoinTestnetGasPricesArray[0].medium, bitcoinTestnetGasPricesArray[0].fast);
+      console.log("Bitcoin Cash mainnet: ",bitcoinCashMainnetGasPricesArray[0].slow, bitcoinCashMainnetGasPricesArray[0].medium, bitcoinCashMainnetGasPricesArray[0].fast);
+      console.log("Bitcoin Cash testnet: ",bitcoinCashTestnetGasPricesArray[0].slow, bitcoinCashTestnetGasPricesArray[0].medium, bitcoinCashTestnetGasPricesArray[0].fast);
+      console.log("Ethereum mainnet: ",ethereumMainnetGasPricesArray[0].ethereumMainnetGweiSlow, ethereumMainnetGasPricesArray[0].ethereumMainnetGweiMedium, ethereumMainnetGasPricesArray[0].ethereumMainnetGweiFast);
+      console.log("Ethereum Goerli: ",ethereumGoerliGasPricesArray[0].ethereumGoerliGweiSlow, ethereumGoerliGasPricesArray[0].ethereumGoerliGweiMedium, ethereumGoerliGasPricesArray[0].ethereumGoerliGweiFast);
+      console.log("Litecoin mainnet: ",litecoinMainnetGasPricesArray[0].slow,litecoinMainnetGasPricesArray[0].medium, litecoinMainnetGasPricesArray[0].fast);
+      console.log("Litecoin testnet: ",litecoinTestnetGasPricesArray[0].slow,litecoinTestnetGasPricesArray[0].medium, litecoinTestnetGasPricesArray[0].fast);
 
-    setBitcoinGasPricesMainnet(bitcoinMainnetGasPricesArray);
-    setBitcoinGasPricesTestnet(bitcoinTestnetGasPricesArray);
-    setBitcoinCashGasPricesMainnet(bitcoinCashMainnetGasPricesArray);
-    setBitcoinCashGasPricesTestnet(bitcoinCashTestnetGasPricesArray);
-    setEthereumGasPricesMainnet(ethereumMainnetGasPricesArray);
-    setEthereumGasPricesGoerli(ethereumGoerliGasPricesArray);
-    setLitecoinGasPricesMainnet(litecoinMainnetGasPricesArray);
-    setLitecoinGasPricesTestnet(litecoinTestnetGasPricesArray);            
+      setBitcoinGasPricesMainnet(bitcoinMainnetGasPricesArray);
+      setBitcoinGasPricesTestnet(bitcoinTestnetGasPricesArray);
+      setBitcoinCashGasPricesMainnet(bitcoinCashMainnetGasPricesArray);
+      setBitcoinCashGasPricesTestnet(bitcoinCashTestnetGasPricesArray);
+      setEthereumGasPricesMainnet(ethereumMainnetGasPricesArray);
+      setEthereumGasPricesGoerli(ethereumGoerliGasPricesArray);
+      setLitecoinGasPricesMainnet(litecoinMainnetGasPricesArray);
+      setLitecoinGasPricesTestnet(litecoinTestnetGasPricesArray);
+    } else {
+      alert("Fetch prices first please");
+    }            
   }
 
-  const RenderPrices =() => {    
-    if (ethereumGasPricesMainnet) {          
+  const RenderPrices =() => {  
+     
+    if (bitcoinGasPricesMainnet) {       
       return(
         <>
         <div className="fees-title">
